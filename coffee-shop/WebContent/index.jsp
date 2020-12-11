@@ -8,6 +8,8 @@
 <link href="css/index.css" rel="stylesheet">
 </head>
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	String section = request.getParameter("section") == null ? "" : request.getParameter("section");
 %>
 <body>
