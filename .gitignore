@@ -1,0 +1,10 @@
+/.metadata/
+coffee-shop/.classpath
+coffee-shop/.settings/org.eclipse.jdt.core.prefs
+*.MF
+coffee-shop/.project
+*.name
+*.container
+coffee-shop/.settings/.jsdtscope
+*.component
+*.xml
