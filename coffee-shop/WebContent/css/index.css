@@ -20,7 +20,7 @@ nav{
 	background: #e0e0e0;
 	margin-bottom: 50px;
 }
-nav ul{ margin-left: 30%; display: flex; }
+nav ul{ margin-left: 25%; display: flex; }
 nav ul > li{ padding: 15px; }
 
 section{ margin-bottom: 50px; }
