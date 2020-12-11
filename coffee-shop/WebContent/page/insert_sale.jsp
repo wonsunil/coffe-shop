@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="coffee.DB" %>
+<%@ page import="java.sql.ResultSet" %>
+
+<%
+	String select_product_query = "SELECT PCODE, NAME FROM TBL_PRODUCT_01";
+	ResultSet select_product_rs = DB.fetch(select_product_query);
+	
+	String select_shop_query = "SELECT SCODE, SNAME FROM TBL_SHOP_01";
+	ResultSet select_shop_rs = DB.fetch(select_shop_query);
+%>
 
 <h1>판매등록</h1>
 <form action="action/insert_sale.jsp" method="POST">
@@ -10,7 +20,19 @@
 		</tr>
 		<tr>
 			<td>상품코드</td>
-			<td><input name="pcode"></td>
+			<td>
+				<select name="pcode">
+				<%
+					while(select_product_rs.next()) {
+				%>
+					<option value="<%=select_product_rs.getString(1) %>"><%=String.format("[%s] %s", select_product_rs.getString(1), select_product_rs.getString(2)) %></option>
+				<%
+					};
+
+					select_product_rs.close();
+				%>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>판매날짜</td>
@@ -18,7 +40,19 @@
 		</tr>
 		<tr>
 			<td>매장코드</td>
-			<td><input name="scode"></td>
+			<td>
+				<select name="scode">
+				<%
+					while(select_shop_rs.next()) {
+				%>
+					<option value="<%=select_shop_rs.getString(1) %>"><%=String.format("[%s] %s", select_shop_rs.getString(1), select_shop_rs.getString(2)) %></option>
+				<%
+					};
+				
+					select_shop_rs.close();
+				%>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>판매수량</td>
