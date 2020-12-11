@@ -4,8 +4,8 @@
 <%@ page import="java.sql.ResultSet" %>
 
 <%
-	String column = request.getParameter("column");
-	String value = request.getParameter("search");
+	String column = request.getParameter("column") == null ? "null" : request.getParameter("column");
+	String value = request.getParameter("search") == null ? "" : request.getParameter("search");
 	
 	String search_query = "SELECT " +
 								"SALENO, " +
@@ -22,7 +22,11 @@
 								"P.PCODE = SL.PCODE AND " +
 								"%s = '%s'";
 	
-	ResultSet search_rs = DB.fetch(String.format(search_query, column, value));
+	ResultSet search_rs = null;
+	
+	if(column != null && !column.equals("null")) {
+		search_rs = DB.fetch(String.format(search_query, column, value));
+	};
 
 	String current_query = "SELECT " +
 								"SALENO, " +
