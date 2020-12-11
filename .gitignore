@@ -8,3 +8,8 @@ coffee-shop/.project
 coffee-shop/.settings/.jsdtscope
 *.component
 *.xml
+*.jar
+*.policy
+Servers/.project
+*.properties
+*.prefs
