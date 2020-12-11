@@ -23,6 +23,8 @@
 				break;
 				case "insert_shop" : %> <%@ include file="page/insert_shop.jsp" %> <%
 				break;
+				case "insert_product" : %> <%@ include file="page/insert_product.jsp" %> <%
+				break;
 				case "sales_current" : %> <%@ include file="page/sales_current.jsp" %> <%
 				break;
 				case "sales_by_shop" : %> <%@ include file="page/sales_by_shop.jsp" %> <%
