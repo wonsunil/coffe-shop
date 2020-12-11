@@ -4,7 +4,9 @@
 <%@ page import="java.sql.ResultSet" %>
 
 <%
-	String search = request.getParameter("search");
+	String column = request.getParameter("column");
+	String value = request.getParameter("search");
+	
 	String search_query = "SELECT " +
 								"SALENO, " +
 								"P.PCODE, " +
@@ -13,16 +15,14 @@
 								"P.NAME, " +
 								"AMOUNT, " +
 								"COST*AMOUNT " + 
-							"FROM " +
+						"FROM " +
 								"TBL_PRODUCT_01 P, " +
 								"TBL_SALELIST_01 SL " +
-							"WHERE " +
+						"WHERE " +
 								"P.PCODE = SL.PCODE AND " +
-								"P.NAME = ?";
+								"%s = '%s'";
 	
-	String[] data = {search};
-	
-	ResultSet search_rs = DB.fetch(search_query, data);
+	ResultSet search_rs = DB.fetch(String.format(search_query, column, value));
 
 	String current_query = "SELECT " +
 								"SALENO, " +
@@ -56,7 +56,7 @@
 	</thead>
 	<tbody>
 		<%
-			if(search != null && search != "") {
+			if(value != null && value != "") {
 				while(search_rs.next()) {
 		%>
 			<tr>
@@ -94,7 +94,17 @@
 </table>
 <form action="index.jsp?section=sales_current" method="POST">
 	<tr>
-		<td><input name="search"></td>
+		<select name="column">
+			<option value="SALENO" <%=column.equals("SALENO") ? "selected" : "" %>>비번호</option>
+			<option value="P.PCODE" <%=column.equals("P.PCODE") ? "selected" : "" %>>상품코드</option>
+			<option value="SCODE" <%=column.equals("SCODE") ? "selected" : "" %>>매장코드</option>
+			<option value="P.NAME" <%=column.equals("P.NAME") ? "selected" : "" %>>상품명</option>
+			<option value="AMOUNT" <%=column.equals("AMOUNT") ? "selected" : "" %>>판매수량</option>
+			<option value="COST*AMOUNT" <%=column.equals("COST*AMOUNT") ? "selected" : "" %>>총판매액</option>
+		</select>
+	</tr>
+	<tr>
+		<td><input name="search" value="<%=value %>"></td>
 		<td><input type="submit"></td>
 	</tr>
 </form>
