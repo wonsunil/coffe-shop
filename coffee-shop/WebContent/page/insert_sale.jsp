@@ -25,7 +25,7 @@
 			<td><input name="amount" type="number"></td>
 		</tr>
 		<tr>
-			<td rowspan=2>
+			<td colspan=2>
 				<input type="submit" value="등록">
 				<button>다시쓰기</button>
 			</td>
