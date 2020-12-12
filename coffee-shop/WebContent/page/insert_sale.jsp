@@ -79,11 +79,11 @@
 			return form.saleno.focus();
 		};
 		if(form.pcode.value === "") {
-			alet("상품코드칸이 비었습니다");
+			alert("상품코드칸이 비었습니다");
 			
 			return form.pcdoe.focus();
 		};
-		if(form.sale_date.vlaue === "") {
+		if(form.sale_date.value === "") {
 			alert("판매날짜칸이 비었습니다");
 			
 			return form.sale_date.focus();
